@@ -34,6 +34,8 @@ function operate(operator, num1, num2){
 
 // button.addEventListener("click", displayValue);
 
+
+
 let numOne = "";
 let numTwo = ""
 let printedNum = "";
@@ -49,133 +51,108 @@ let selectedNum = document.getElementById("calculator");
 let calcScreen = document.getElementById("num-display");
 //take recording and print
 
-if (operator == ""){
-    function displayValue(selectedNum) {
-        if (selectedNum == "seven-but"){
-            printedNum += "7";
-            calcScreen.innerHTML = printedNum;
-            console.log(printedNum);
-            // return printedNum;
-        } else if (selectedNum == "eight-but"){
-            printedNum += "8";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "nine-but"){
-            printedNum += "9";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "six-but"){
-            printedNum += "6";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "five-but"){
-            printedNum += "5";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "four-but"){
-            printedNum += "4";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "three-but"){
-            printedNum += "3";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "two-but"){
-            printedNum += "2";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "one-but"){
-            printedNum += "1";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "zero-but") {
-            printedNum += "0";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "decimal-but") {
-            printedNum += ".";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "divide-but") {
-            numOne = printedNum;
-            operator = divide;
-            calcScreen.innerHTML += " ÷ ";
-            return numOne, operator;
-        } else if (selectedNum == "subtract-but") {
-            numOne = printedNum;
-            operator = subtract;
-            calcScreen.innerHTML += " - ";
-            return numOne, operator;
-        } else if (selectedNum == "add-but") {
-            numOne = printedNum;
-            operator = add;
-            calcScreen.innerHTML += " + ";
-            console.log(numOne, operator);
-            return numOne, operator;
-        } else if (selectedNum == "multiply-but") {
-            numOne = printedNum;
-            operator = "multiply";
-            console.log(operator);
-            calcScreen.innerHTML += " x ";
-            return numOne, operator;
-        }
-    }   
-} else if (operator == "multiply") {
-    function displayValue(selectedNum) {
-        if (selectedNum == "seven-but"){
-            printedNum += "7";
-            calcScreen.innerHTML += (numOne) + " x " + printedNum;
-            console.log(printedNum);
-            // return printedNum;
-        } else if (selectedNum == "eight-but"){
-            printedNum += "8";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "nine-but"){
-            printedNum += "9";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "six-but"){
-            printedNum += "6";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "five-but"){
-            printedNum += "5";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "four-but"){
-            printedNum += "4";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "three-but"){
-            printedNum += "3";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "two-but"){
-            printedNum += "2";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "one-but"){
-            printedNum += "1";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "zero-but") {
-            printedNum += "0";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "decimal-but") {
-            printedNum += ".";
-            calcScreen.innerHTML = printedNum;
-        } else if (selectedNum == "divide-but") {
-            numTwo = printedNum;
-            operator = divide;
-            calcScreen.innerHTML += " ÷ ";
-            return numTwo, operator;
-        } else if (selectedNum == "subtract-but") {
-            numTwo = printedNum;
-            operator = subtract;
-            calcScreen.innerHTML += " - ";
-            return numTwo, operator;
-        } else if (selectedNum == "add-but") {
-            numTwo = printedNum;
-            operator = add;
-            calcScreen.innerHTML += " + ";
-            console.log(numTwo, operator);
-            return numTwo, operator;
-        } else if (selectedNum == "multiply-but") {
-            numTwo = printedNum;
-            operator = multiply;
-            calcScreen.innerHTML += " x ";
-            return numTwo, operator;
-        } else if (selectedNum == "equals-but"){
-            console.log(numOne);
-            console.log(numTwo);
-            console.log(operator);
-            calcScreen.innerHTML += (" = " + operate(operator, numOne, numTwo));
+function displayValue(selectedNum) {
+    if (selectedNum == "seven-but"){
+        printedNum += "7";
+        calcScreen.innerHTML = printedNum;
+        numOne = printedNum;
+        console.log(numOne);
+        // return printedNum;
+    } else if (selectedNum == "eight-but"){
+        printedNum += "8";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "nine-but"){
+        printedNum += "9";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "six-but"){
+        printedNum += "6";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "five-but"){
+        printedNum += "5";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "four-but"){
+        printedNum += "4";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "three-but"){
+        printedNum += "3";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "two-but"){
+        printedNum += "2";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "one-but"){
+        printedNum += "1";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "zero-but") {
+        printedNum += "0";
+        calcScreen.innerHTML = printedNum;
+    } else if (selectedNum == "decimal-but") {
+        printedNum += ".";
+        calcScreen.innerHTML = printedNum;
+    } return numOne;
     }
-    }   
-}
+
+function selectOperator(selectedNum){
+    if (selectedNum == "divide-but") {
+        numOne = printedNum;
+        operator = divide;
+        calcScreen.innerHTML += " ÷ ";
+        console.log("divide selected");
+        return numOne, operator;
+    } else if (selectedNum == "subtract-but") {
+        numOne = printedNum;
+        operator = subtract;
+        calcScreen.innerHTML += " - ";
+        return numOne, operator;
+    } else if (selectedNum == "add-but") {
+        numOne = printedNum;
+        operator = add;
+        calcScreen.innerHTML += " + ";
+        console.log(numOne, operator);
+        return numOne, operator;
+    } else if (selectedNum == "multiply-but") {
+        numOne = printedNum;
+        operator = multiply
+        calcScreen.innerHTML += " x ";
+        return numOne, operator;
+    } else if (selectedNum == "equals-but"){
+        console.log(operate(operator, numOne, numTwo));
+    }}
+
+
+// function selectOperator(){
+//     if (selectedNum == "divide-but") {
+//         numOne = printedNum;
+//         operator = divide;
+//         calcScreen.innerHTML += " ÷ ";
+//     return numOne, operator;
+// } else if (selectedNum == "subtract-but") {
+//         numOne = printedNum;
+//         operator = subtract;
+//         calcScreen.innerHTML += " - ";
+//     return numOne, operator;
+// } else if (selectedNum == "add-but") {
+//         numOne = printedNum;
+//         operator = add;
+//         calcScreen.innerHTML += " + ";
+//         console.log(numOne, operator);
+//     return numOne, operator;
+// } else if (selectedNum == "multiply-but") {
+//         numOne = printedNum;
+//         operator = multiply
+//         calcScreen.innerHTML += " x ";
+//     return numOne, operator;
+// } else if (selectedNum == "equals-but"){
+//     console.log(operate(operator, numOne, numTwo));
+// }}
+
+
+
+// if (operator == ""){
+//     displayValue(selectedNum) 
+// } else if (operator == "multiply") {
+//     displayValue(selectedNum) 
+
+// }
 // function displayValue(selectedNum) {
 //     if (selectedNum == "seven-but"){
 //         printedNum += "7";
