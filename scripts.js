@@ -168,11 +168,15 @@ function secondNum(selectedNum) {
 
 //the following function will populate numOne or numTwo depending on if an operator is selected
 
-function clickAction(selectedNum) {
+function clickAction(selectedNum, numOne, numTwo) {
     if (operator == "") {
         displayValue(selectedNum)
     } else if (operator == "multiply") {
-        secondNum(selectedNum)
+        // if (operator == "multiply" && numOne != "" && numTwo != ""){
+        //     return resetEquation
+        // } else {
+        secondNum(selectedNum) 
+        // }
     } else if (operator == "add") {
         secondNum(selectedNum)
     } else if (operator == "divide") {
@@ -202,6 +206,24 @@ function operate(operator, numOne, numTwo){
         return "No operator found";
     }
 }
+
+//if the user has selected their first number, an operator
+//a second number.  These are all stored.  When a user hits a 
+//second operator, the equation should be operated, and stored as 
+//numOne.  Then, numOne and the second operator should replace the current numbers
+//and 
+
+function resetEquation(operator, numOne, numTwo){
+    numOne = operate(operator, numOne, numTwo);
+    numTwo = ""
+    // operator = "";
+    return {numOne, numTwo};
+}
+
+//when clicking on an operator
+// if ((operator != "") && (numOne != "") && (numTwo != "")) {
+//     resetEquation();
+// }
 
 
 let placehold;
