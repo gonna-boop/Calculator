@@ -94,52 +94,49 @@ function displayValue(selectedNum) {
 //the above function successfully records and prints the first integer correctly
 
 function selectOperator(selectedNum){
-    operatorHit++;
+    // operatorHit++;
+    if (operator){
+        if(numTwo){
+            let newNumObj = resetEquation(operator, numOne, numTwo);
+            numOne = newNumObj.numOne;
+            numTwo = "";
+    }
+        } else {
+            operator = selectedNum;
+        }
     if (operatorHit > 1){
         let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
-            numTwo = newNumObj.numTwo;
+            numTwo = ""
     }
     if (selectedNum == "divide-but") {
         operator = "divide";
         if (operatorHit > 1){
-            // let newNumObj = resetEquation(operator, numOne, numTwo);
-            // numOne = newNumObj.numOne;
-            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " ÷ ";
         } else {
-            calcScreen.innerHTML += " ÷ ";
-        } return operator;
+            calcScreen.innerHTML = numOne + " ÷ ";
+        } 
     } else if (selectedNum == "subtract-but") {
         operator = "subtract";
         if (operatorHit > 1){
-            // let newNumObj = resetEquation(operator, numOne, numTwo);
-            // numOne = newNumObj.numOne;
-            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " - ";
         } else {
-            calcScreen.innerHTML += " - ";
-        } return operator;
+            calcScreen.innerHTML = numOne + " - ";
+        } 
     } else if (selectedNum == "add-but") {
         operator = "add";
         if (operatorHit > 1){
-            // let newNumObj = resetEquation(operator, numOne, numTwo);
-            // numOne = newNumObj.numOne;
-            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " + ";
         } else {
-            calcScreen.innerHTML += " + ";
-        } return operator;
+            calcScreen.innerHTML = numOne + " + ";
+        } 
     } else if (selectedNum == "multiply-but") {
         operator = "multiply";
         if (operatorHit > 1){
-            // let newNumObj = resetEquation(operator, numOne, numTwo);
-            // numOne = newNumObj.numOne;
-            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " x ";
         } else {
-            calcScreen.innerHTML += " x ";
-        } return operator;
+            calcScreen.innerHTML = numOne + " x ";
+        } 
     }}
 
 //the above function will work when an operator is selected
@@ -148,20 +145,23 @@ function selectOperator(selectedNum){
 //but with the first operator as the argument.
 //figure out how to get this to work
 
-function selectEquals(selectedNum, operator, numOne, numTwo){
-    // operator = clickAction();
-    // numOne = displayValue();
-    // numTwo = secondNum();
+function selectEquals(selectedNum){
+    operator = clickAction();
+    numOne = displayValue();
+    numTwo = secondNum();
     if (selectedNum == "equals-but"){
         operator = clickAction();
-        numOne = displayValue();
-        numTwo = secondNum();
-        let newNumObj = resetEquation(operator, numOne, numTwo);
-            numOne = newNumObj.numOne;
+        // numOne = displayValue();
+        // numTwo = secondNum();
+            numOne = operate(operator, numOne, numTwo);
+            printedNum = "";
+            calcScreen.innerHTML = numOne;
+            numOne = "";
             numTwo = "";
             operator = "";
             operatorHit = 0;
-        calcScreen.innerHTML = numOne;
+            printedNumThree = "";
+            printedNumTwo = "";
         return numOne;
     }
     return numOne;
@@ -268,7 +268,6 @@ function clickAction(selectedNum, numOne, numTwo) {
         displayValue(selectedNum)
     } else if (operator == "multiply") {
         secondNum(selectedNum) 
-        // }
     } else if (operator == "add") {
         secondNum(selectedNum)
     } else if (operator == "divide") {
@@ -276,7 +275,6 @@ function clickAction(selectedNum, numOne, numTwo) {
     } else if (operator == "subtract") {
         secondNum(selectedNum)
     }
-    // console.log(operator);
     return operator;
 }
 //below here, writing out for my own thoughts
@@ -310,6 +308,7 @@ function resetEquation(operator, numOne, numTwo){
     numOne = operate(operator, numOne, numTwo);
     numTwo = "";
     operator = "";
+    printedNumThree = "";
     solutionArray = {numOne, numTwo};
     return solutionArray;
 }
@@ -326,15 +325,17 @@ function clearButton(){
         printedNumTwo = "";
 }
 
-// function secondOperator(operator, numOne, numTwo){
-//     if (operatorHit > 0){
-//         console.log(numOne = operate(operator, numOne, numTwo));
-//         numTwo = "";
-//         calcScreen.innerHTML = numOne;
-//         console.log(numOne);
-//         return numOne;
-//     }
-// }
+function deleteButton(){ 
+    if (numTwo == ""){
+        numOne = numOne.slice(0, -1);
+        printedNum = numOne;
+        calcScreen.innerHTML = printedNum;
+    } else if (numTwo != ""){
+        numTwo = numTwo.slice(0, -1);
+        printedNumTwo = numTwo
+        calcScreen.innerHTML = printedNumTwo;
+    }
+}
 //clearButton function clears all info on the page.  
 let placehold;
 
