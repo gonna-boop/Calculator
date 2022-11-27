@@ -95,12 +95,17 @@ function displayValue(selectedNum) {
 
 function selectOperator(selectedNum){
     operatorHit++;
+    if (operatorHit > 1){
+        let newNumObj = resetEquation(operator, numOne, numTwo);
+            numOne = newNumObj.numOne;
+            numTwo = newNumObj.numTwo;
+    }
     if (selectedNum == "divide-but") {
         operator = "divide";
         if (operatorHit > 1){
-            let newNumObj = resetEquation(operator, numOne, numTwo);
-            numOne = newNumObj.numOne;
-            numTwo = newNumObj.numTwo;
+            // let newNumObj = resetEquation(operator, numOne, numTwo);
+            // numOne = newNumObj.numOne;
+            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " ÷ ";
         } else {
             calcScreen.innerHTML += " ÷ ";
@@ -108,9 +113,9 @@ function selectOperator(selectedNum){
     } else if (selectedNum == "subtract-but") {
         operator = "subtract";
         if (operatorHit > 1){
-            let newNumObj = resetEquation(operator, numOne, numTwo);
-            numOne = newNumObj.numOne;
-            numTwo = newNumObj.numTwo;
+            // let newNumObj = resetEquation(operator, numOne, numTwo);
+            // numOne = newNumObj.numOne;
+            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " - ";
         } else {
             calcScreen.innerHTML += " - ";
@@ -118,9 +123,9 @@ function selectOperator(selectedNum){
     } else if (selectedNum == "add-but") {
         operator = "add";
         if (operatorHit > 1){
-            let newNumObj = resetEquation(operator, numOne, numTwo);
-            numOne = newNumObj.numOne;
-            numTwo = newNumObj.numTwo;
+            // let newNumObj = resetEquation(operator, numOne, numTwo);
+            // numOne = newNumObj.numOne;
+            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " + ";
         } else {
             calcScreen.innerHTML += " + ";
@@ -128,9 +133,9 @@ function selectOperator(selectedNum){
     } else if (selectedNum == "multiply-but") {
         operator = "multiply";
         if (operatorHit > 1){
-            let newNumObj = resetEquation(operator, numOne, numTwo);
-            numOne = newNumObj.numOne;
-            numTwo = newNumObj.numTwo;
+            // let newNumObj = resetEquation(operator, numOne, numTwo);
+            // numOne = newNumObj.numOne;
+            // numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " x ";
         } else {
             calcScreen.innerHTML += " x ";
@@ -153,7 +158,9 @@ function selectEquals(selectedNum, operator, numOne, numTwo){
         numTwo = secondNum();
         let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
-            numTwo = newNumObj.numTwo;
+            numTwo = "";
+            operator = "";
+            operatorHit = 0;
         calcScreen.innerHTML = numOne;
         return numOne;
     }
