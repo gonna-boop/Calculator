@@ -1,5 +1,5 @@
 let numOne = "";
-let numTwo = ""
+let numTwo = "";
 let printedNum = "";
 let printedNumTwo = "";
 let printedNumThree = "";
@@ -95,7 +95,6 @@ function displayValue(selectedNum) {
 
 function selectOperator(selectedNum){
     operatorHit++;
-    
     if (selectedNum == "divide-but") {
         operator = "divide";
         if (operatorHit > 1){
@@ -103,7 +102,6 @@ function selectOperator(selectedNum){
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
             calcScreen.innerHTML = numOne + " ÷ ";
-            console.log(operator)
         } else {
             calcScreen.innerHTML += " ÷ ";
         } return operator;
@@ -153,11 +151,9 @@ function selectEquals(selectedNum, operator, numOne, numTwo){
         numOne = displayValue();
         numTwo = secondNum();
         let newNumObj = resetEquation(operator, numOne, numTwo);
-        console.log(newNumObj);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
         calcScreen.innerHTML = numOne;
-        console.log(numOne);
         return numOne;
     }
     return numOne;
@@ -263,9 +259,6 @@ function clickAction(selectedNum, numOne, numTwo) {
     if (operator == "") {
         displayValue(selectedNum)
     } else if (operator == "multiply") {
-        // if (operator == "multiply" && numOne != "" && numTwo != ""){
-        //     return resetEquation
-        // } else {
         secondNum(selectedNum) 
         // }
     } else if (operator == "add") {
@@ -308,10 +301,20 @@ function operate(operator, numOne, numTwo){
 function resetEquation(operator, numOne, numTwo){
     numOne = operate(operator, numOne, numTwo);
     numTwo = "";
-    // operator = "";
-    solutionArray = {numOne, numTwo};
+    operator = "";
+    solutionArray = {numOne, numTwo, operator};
     return solutionArray;
 }
+
+function clearButton(){
+        printedNum = "";
+        numOne = printedNum;
+        calcScreen.innerHTML = printedNum;
+        operator = "";
+        numOne = "";
+        numTwo = "";
+}
+
 
 let placehold;
 
