@@ -8,6 +8,7 @@ let solutionArray = [];
 let operatorHit = 0;
 //user clicks button 
 let selectedNum = document.getElementById("calculator");
+let selectedOperator = document.getElementById("calculator");
 //button is recorded 
 
 //then, the next time a user clicks a button, concatenate strings
@@ -16,19 +17,27 @@ let calcScreen = document.getElementById("num-display");//add, subtract, multipl
 //equate them.  the operator function calls these based on 
 //which operator is chosen, and the numbers given
 const add = function(a, b) {
+    a = parseInt(a);
+    b = parseInt(b);
 	let addition = ((a) + (b));
   return addition;
 };
 const subtract = function(a, b) {
+    a = parseInt(a);
+    b = parseInt(b);
 	let subtraction = ((a) - (b));
   return subtraction;
 };
 const multiply = function(a, b) {
+    a = parseInt(a);
+    b = parseInt(b);
     // solutionArray = [(a * b), b];
     let multiplication = ((a) * (b));
       return multiplication;
     }
 const divide = function(a, b){
+    a = parseInt(a);
+    b = parseInt(b);
     let division = ((a) / (b));
     return division;
 }
@@ -82,18 +91,19 @@ function displayValue(selectedNum) {
         calcScreen.innerHTML = printedNum;
     } console.log(numOne); return numOne;
     }
-
 //the above function successfully records and prints the first integer correctly
 
 function selectOperator(selectedNum){
     operatorHit++;
+    
     if (selectedNum == "divide-but") {
         operator = "divide";
         if (operatorHit > 1){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
-            calcScreen.innerHTML += numOne + " ÷ ";
+            calcScreen.innerHTML = numOne + " ÷ ";
+            console.log(operator)
         } else {
             calcScreen.innerHTML += " ÷ ";
         } return operator;
@@ -103,7 +113,7 @@ function selectOperator(selectedNum){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
-            calcScreen.innerHTML += numOne + " - ";
+            calcScreen.innerHTML = numOne + " - ";
         } else {
             calcScreen.innerHTML += " - ";
         } return operator;
@@ -113,7 +123,7 @@ function selectOperator(selectedNum){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
-            calcScreen.innerHTML += numOne + " + ";
+            calcScreen.innerHTML = numOne + " + ";
         } else {
             calcScreen.innerHTML += " + ";
         } return operator;
@@ -123,13 +133,16 @@ function selectOperator(selectedNum){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
-            calcScreen.innerHTML += numOne + " x ";
+            calcScreen.innerHTML = numOne + " x ";
         } else {
             calcScreen.innerHTML += " x ";
         } return operator;
     }}
-
 //the above function will work when an operator is selected
+
+//when a second operator is slected, the resetEquation needs to run
+//but with the first operator as the argument.
+//figure out how to get this to work
 
 function selectEquals(selectedNum, operator, numOne, numTwo){
     // operator = clickAction();
@@ -139,15 +152,16 @@ function selectEquals(selectedNum, operator, numOne, numTwo){
         operator = clickAction();
         numOne = displayValue();
         numTwo = secondNum();
-        let finalNum = operate(operator, numOne, numTwo);
-        calcScreen.innerHTML = finalNum;
-        numOne = finalNum;
-        numTwo = "";
+        let newNumObj = resetEquation(operator, numOne, numTwo);
+        console.log(newNumObj);
+            numOne = newNumObj.numOne;
+            numTwo = newNumObj.numTwo;
+        calcScreen.innerHTML = numOne;
         console.log(numOne);
         return numOne;
     }
+    return numOne;
 }
-
 //the following function will record the user's second variable selection
 
 function secondNum(selectedNum) {
@@ -243,7 +257,6 @@ function secondNum(selectedNum) {
             calcScreen.innerHTML = printedNumTwo;
     } return numTwo;
     }}
-
 //the following function will populate numOne or numTwo depending on if an operator is selected
 
 function clickAction(selectedNum, numOne, numTwo) {
@@ -265,7 +278,6 @@ function clickAction(selectedNum, numOne, numTwo) {
     // console.log(operator);
     return operator;
 }
-
 //below here, writing out for my own thoughts
 //say that now there are 2 numbers selected and an 
 //operator.  Push those to a function that does the math
@@ -284,7 +296,6 @@ function operate(operator, numOne, numTwo){
         return "No operator found";
     }
 }
-
 //if the user has selected their first number, an operator
 //a second number.  These are all stored.  When a user hits a 
 //second operator, the equation should be operated, and stored as 
@@ -301,20 +312,6 @@ function resetEquation(operator, numOne, numTwo){
     solutionArray = {numOne, numTwo};
     return solutionArray;
 }
-
-function resetFromEqual(operator, numOne, numTwo){
-    
-}
-// numOne = solutionArray.numOne;
-// numTwo = solutionArray.numTwo;
-
-//the above code needs to operate when a second operator is hit 
-
-//when clicking on an operator
-// if ((operator != "") && (numOne != "") && (numTwo != "")) {
-//     resetEquation();
-// }
-
 
 let placehold;
 
