@@ -93,11 +93,11 @@ function displayValue(selectedNum) {
     }
 //the above function successfully records and prints the first integer correctly
 
-function selectOperator(selectedNum, operator, numOne, numTwo){
+function selectOperator(selectedNum){
     operatorHit++;
     if (selectedNum == "divide-but") {
         operator = "divide";
-        if (operatorHit > 2){
+        if (operatorHit > 1){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
