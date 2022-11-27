@@ -95,17 +95,9 @@ function displayValue(selectedNum) {
 
 function selectOperator(selectedNum, operator, numOne, numTwo){
     operatorHit++;
-        operator = clickAction();
-        numOne = displayValue();
-        numTwo = secondNum();
-    if (operatorHit > 0) {
-        let resetNumOne = resetEquation(operator, numOne, numTwo);
-        numOne = resetNumOne.numOne;
-        numTwo = "";
-    }
     if (selectedNum == "divide-but") {
         operator = "divide";
-        if (operatorHit > 1){
+        if (operatorHit > 2){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = newNumObj.numTwo;
