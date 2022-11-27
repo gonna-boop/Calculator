@@ -93,8 +93,16 @@ function displayValue(selectedNum) {
     }
 //the above function successfully records and prints the first integer correctly
 
-function selectOperator(selectedNum){
+function selectOperator(selectedNum, operator, numOne, numTwo){
     operatorHit++;
+        operator = clickAction();
+        numOne = displayValue();
+        numTwo = secondNum();
+    if (operatorHit > 0) {
+        let resetNumOne = resetEquation(operator, numOne, numTwo);
+        numOne = resetNumOne.numOne;
+        numTwo = "";
+    }
     if (selectedNum == "divide-but") {
         operator = "divide";
         if (operatorHit > 1){
@@ -136,6 +144,7 @@ function selectOperator(selectedNum){
             calcScreen.innerHTML += " x ";
         } return operator;
     }}
+
 //the above function will work when an operator is selected
 
 //when a second operator is slected, the resetEquation needs to run
@@ -302,20 +311,32 @@ function resetEquation(operator, numOne, numTwo){
     numOne = operate(operator, numOne, numTwo);
     numTwo = "";
     operator = "";
-    solutionArray = {numOne, numTwo, operator};
+    solutionArray = {numOne, numTwo};
     return solutionArray;
 }
 
 function clearButton(){
         printedNum = "";
-        numOne = printedNum;
         calcScreen.innerHTML = printedNum;
         operator = "";
         numOne = "";
         numTwo = "";
+        operatorHit = 0;
+        solutionArray = [];
+        printedNumThree = "";
+        printedNumTwo = "";
 }
 
-
+// function secondOperator(operator, numOne, numTwo){
+//     if (operatorHit > 0){
+//         console.log(numOne = operate(operator, numOne, numTwo));
+//         numTwo = "";
+//         calcScreen.innerHTML = numOne;
+//         console.log(numOne);
+//         return numOne;
+//     }
+// }
+//clearButton function clears all info on the page.  
 let placehold;
 
 // function selectOperator(){
