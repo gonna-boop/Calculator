@@ -110,12 +110,15 @@ function selectOperator(selectedNum){
             numTwo = ""
     }
     if (selectedNum == "divide-but") {
+        if (numTwo = 0) {
+            calcScreen.innerHTML = "You can't do that!";
+        }
         operator = "divide";
         if (operatorHit > 1){
             calcScreen.innerHTML = numOne + " ÷ ";
         } else {
             calcScreen.innerHTML = numOne + " ÷ ";
-        } 
+        }
     } else if (selectedNum == "subtract-but") {
         operator = "subtract";
         if (operatorHit > 1){
@@ -217,43 +220,43 @@ function secondNum(selectedNum) {
         } return numTwo
     } else if (operatorHit < 2) {
         if (selectedNum == "seven-but"){
-            printedNumTwo += "7";
+            printedNumTwo = "7";
             calcScreen.innerHTML = printedNumTwo;
             numTwo = printedNumTwo;
         } else if (selectedNum == "eight-but"){
-            printedNumTwo += "8";
+            printedNumTwo = "8";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "nine-but"){
-            printedNumTwo += "9";
+            printedNumTwo = "9";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "six-but"){
-            printedNumTwo += "6";
+            printedNumTwo = "6";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "five-but"){
-            printedNumTwo += "5";
+            printedNumTwo = "5";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "four-but"){
-            printedNumTwo += "4";
+            printedNumTwo = "4";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "three-but"){
-            printedNumTwo += "3";
+            printedNumTwo = "3";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "two-but"){
-            printedNumTwo += "2";
+            printedNumTwo = "2";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "one-but"){
-            printedNumTwo += "1";
+            printedNumTwo = "1";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "zero-but") {
-            printedNumTwo += "0";
+            printedNumTwo = "0";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "decimal-but") {
@@ -267,13 +270,13 @@ function clickAction(selectedNum, numOne, numTwo) {
     if (operator == "") {
         displayValue(selectedNum)
     } else if (operator == "multiply") {
-        secondNum(selectedNum) 
+        secondNum(selectedNum);
     } else if (operator == "add") {
-        secondNum(selectedNum)
+        secondNum(selectedNum);
     } else if (operator == "divide") {
-        secondNum(selectedNum)
+        secondNum(selectedNum);
     } else if (operator == "subtract") {
-        secondNum(selectedNum)
+        secondNum(selectedNum);
     }
     return operator;
 }
@@ -310,6 +313,7 @@ function resetEquation(operator, numOne, numTwo){
     operator = "";
     printedNumThree = "";
     solutionArray = {numOne, numTwo};
+    operatorHit++;
     return solutionArray;
 }
 
