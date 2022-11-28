@@ -6,6 +6,7 @@ let printedNumThree = "";
 let operator = "";
 let solutionArray = [];
 let operatorHit = 0;
+let decimalHit = 0;
 //user clicks button 
 let selectedNum = document.getElementById("calculator");
 let selectedOperator = document.getElementById("calculator");
@@ -17,27 +18,27 @@ let calcScreen = document.getElementById("num-display");//add, subtract, multipl
 //equate them.  the operator function calls these based on 
 //which operator is chosen, and the numbers given
 const add = function(a, b) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
 	let addition = ((a) + (b));
   return addition;
 };
 const subtract = function(a, b) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
 	let subtraction = ((a) - (b));
   return subtraction;
 };
 const multiply = function(a, b) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
     // solutionArray = [(a * b), b];
     let multiplication = ((a) * (b));
       return multiplication;
     }
 const divide = function(a, b){
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
     let division = ((a) / (b));
     return division;
 }
@@ -87,19 +88,27 @@ function displayValue(selectedNum) {
         numOne = printedNum;
         calcScreen.innerHTML = printedNum;
     } else if (selectedNum == "decimal-but") {
-        printedNum += ".";
-        calcScreen.innerHTML = printedNum;
+        decimalHit++;
+        if (decimalHit > 1){
+            document.getElementById("divide-but").disabled = true;
+        } else {
+            printedNum += ".";
+            calcScreen.innerHTML = printedNum;
+        } 
     } console.log(numOne); return numOne;
     }
 //the above function successfully records and prints the first integer correctly
 
 function selectOperator(selectedNum){
-    // operatorHit++;
+    decimalHit = 0;
     if (operator){
         if(numTwo){
             let newNumObj = resetEquation(operator, numOne, numTwo);
             numOne = newNumObj.numOne;
             numTwo = "";
+            printedNum = numOne;
+            printedNumTwo = "";
+            printedNumThree = "";
     }
         } else {
             operator = selectedNum;
@@ -110,9 +119,6 @@ function selectOperator(selectedNum){
             numTwo = ""
     }
     if (selectedNum == "divide-but") {
-        if (numTwo = 0) {
-            calcScreen.innerHTML = "You can't do that!";
-        }
         operator = "divide";
         if (operatorHit > 1){
             calcScreen.innerHTML = numOne + " ÷ ";
@@ -174,7 +180,7 @@ function selectEquals(selectedNum){
 function secondNum(selectedNum) {
     if (operatorHit > 1) {
         if (selectedNum == "seven-but"){
-            printedNumThree = "7";
+            printedNumThree += "7";
             calcScreen.innerHTML = printedNumThree;
             numTwo = printedNumThree;
         } else if (selectedNum == "eight-but"){
@@ -214,54 +220,63 @@ function secondNum(selectedNum) {
             numTwo = printedNumThree;
             calcScreen.innerHTML = printedNumThree;
         } else if (selectedNum == "decimal-but") {
-            printedNumThree += ".";
-            numTwo = printedNumThree;
-            calcScreen.innerHTML = printedNumThree;
+            decimalHit++;
+            if (decimalHit > 1){
+                document.getElementById("divide-but").disabled = true;
+            } else {
+                printedNumThree = ".";
+                calcScreen.innerHTML = printedNumThree;
+            } 
         } return numTwo
-    } else if (operatorHit < 2) {
+    } else if (operatorHit < 10) {
         if (selectedNum == "seven-but"){
-            printedNumTwo = "7";
+            printedNumTwo += "7";
             calcScreen.innerHTML = printedNumTwo;
             numTwo = printedNumTwo;
         } else if (selectedNum == "eight-but"){
-            printedNumTwo = "8";
+            printedNumTwo += "8";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "nine-but"){
-            printedNumTwo = "9";
+            printedNumTwo += "9";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "six-but"){
-            printedNumTwo = "6";
+            printedNumTwo += "6";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "five-but"){
-            printedNumTwo = "5";
+            printedNumTwo += "5";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "four-but"){
-            printedNumTwo = "4";
+            printedNumTwo += "4";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "three-but"){
-            printedNumTwo = "3";
+            printedNumTwo += "3";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "two-but"){
-            printedNumTwo = "2";
+            printedNumTwo += "2";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "one-but"){
-            printedNumTwo = "1";
+            printedNumTwo += "1";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "zero-but") {
-            printedNumTwo = "0";
+            printedNumTwo += "0";
             numTwo = printedNumTwo;
             calcScreen.innerHTML = printedNumTwo;
         } else if (selectedNum == "decimal-but") {
-            printedNumTwo += ".";
-            calcScreen.innerHTML = printedNumTwo;
+            decimalHit++;
+            if (decimalHit > 1){
+                document.getElementById("divide-but").disabled = true;
+            } else {
+                printedNumTwo += ".";
+                calcScreen.innerHTML = printedNumTwo;
+        } 
     } return numTwo;
     }}
 //the following function will populate numOne or numTwo depending on if an operator is selected
@@ -294,9 +309,10 @@ function operate(operator, numOne, numTwo){
         return add(numOne, numTwo);
     } else if (operator == "subtract") {
         return subtract(numOne, numTwo);
-    } else {
-        return "No operator found";
+    // } else {
+    //     return "No operator found"; 
     }
+
 }
 //if the user has selected their first number, an operator
 //a second number.  These are all stored.  When a user hits a 
@@ -313,7 +329,7 @@ function resetEquation(operator, numOne, numTwo){
     operator = "";
     printedNumThree = "";
     solutionArray = {numOne, numTwo};
-    operatorHit++;
+    operatorHit = 0;
     return solutionArray;
 }
 
@@ -327,6 +343,7 @@ function clearButton(){
         solutionArray = [];
         printedNumThree = "";
         printedNumTwo = "";
+        decimalHit = 0;
 }
 
 function deleteButton(){ 
@@ -338,6 +355,11 @@ function deleteButton(){
         numTwo = numTwo.slice(0, -1);
         printedNumTwo = numTwo
         calcScreen.innerHTML = printedNumTwo;
+    }
+    if (numOne.includes(".")){
+        return;
+    } else {
+        decimalHit = 0;
     }
 }
 //clearButton function clears all info on the page.  
